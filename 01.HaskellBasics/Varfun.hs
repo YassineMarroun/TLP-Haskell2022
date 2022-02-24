@@ -3,5 +3,9 @@
     y primer comentario de cabecera.
 -}
 
-r = 5.0             -- radio del circulo
-area = pi * r ^ 2   -- longitud del circulo
+
+area r = pi * r ^ 2   -- longitud del circulo
+
+quita12 x = (x / 2) - 12
+
+volumen ancho largo alto = ancho * largo * alto
