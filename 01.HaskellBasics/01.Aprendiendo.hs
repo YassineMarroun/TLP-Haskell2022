@@ -1,1 +1,0 @@
-prueba = print("Hola programador")
