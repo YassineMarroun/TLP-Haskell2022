@@ -35,3 +35,25 @@ que hacen falta para evaluar una función.
 
 # Boolean
 Con mayúscula: True, False.
+
+
+# Evaluar tipos
+Usando :type
+
+El operador :: se traduce por "es de tipo".
+Por ejemplo, si calculo :type True, me dice True :: Bool,
+que se puede leer como True es de tipo Bool.
+
+
+# Ejercicios
+
+1. negate :: Int -> Int
+2. (||) :: Bool -> Bool -> Bool
+3. monthLength :: Bool -> Int -> Int
+4. f :: Bool -> Bool -> Bool
+5. g :: Int -> Int
+
+
+# Strings
+String es una lista de caracteres.
+Se concatenan con ++, no se concatenan con +.
