@@ -57,3 +57,27 @@ que se puede leer como True es de tipo Bool.
 # Strings
 String es una lista de caracteres.
 Se concatenan con ++, no se concatenan con +.
+
+
+# Listas y pares
+
+* Listas. Deben tener el mismo tipo.
+* : => concatenar por la izquierda.
+
+* Tuplas. Entre paréntesis  tipos diversos, pero no crecen.
+
+* fst: primer elemento de una 2-tupla
+* snd: segundo elemento de una 2-tupla
+
+* head / tail: para listas.
+
+
+# Typeclasses
+Numéricos
+Tipos: Int, Integer, Double, Float
+Tipoclases: Num, Fractional
+
+fromIntegral: Convierte Integral a Num, lo cual es importante porque si le pasas un Integral a una función que espera un Num, falla.
+
+
+# Ejercicios de listas
