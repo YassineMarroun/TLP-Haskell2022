@@ -81,3 +81,15 @@ fromIntegral: Convierte Integral a Num, lo cual es importante porque si le pasas
 
 
 # Ejercicios de listas
+
+Listas de listas 1
+1. 1:2:3:[]:[]
+2. 1:[2,3]:4:[]
+3. [1,2,3]:[]:[]
+
+Listas de listas 2
+1. [[], [1, 2, 3], [1, 2, 3]]
+2. [[]]
+3. [[1], []]
+4. []
+5. ["Hi", 1]
