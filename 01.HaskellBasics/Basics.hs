@@ -32,8 +32,9 @@ y = x + 3.1
 
 
 -- Cons
-cons8 :: (Num a) =>[a] -> [a]
+cons8 :: (Num a) => [a] -> [a]
 cons8 l = l ++ [8]
+
 
 
 myCons :: [a] -> a -> [a]
@@ -42,5 +43,5 @@ myCons list thing = thing:list
 
 
 -- Fifth element
-fifthelement :: [a] -> a
-fifthelement_s :: (Num b) => [a] -> b -> a
+-- fifthelement :: [a] -> a
+-- fifthelement_s :: (Num b) => [a] -> b -> a
