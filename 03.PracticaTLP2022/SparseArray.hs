@@ -14,13 +14,13 @@ num2bin n = num2binAux n
         num2binAux n = (num2binAux (div n 2))++[(mod n 2)==1]
 
 -- Función newSparseArray: devuelve un SparseArray vacío --
-newSparseArray :: SparseArray a
+newSparseArray :: Eq a => SparseArray a
 
 -- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
-set :: SparseArray a -> Int -> a -> SparseArray a
+set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
 
 -- Función get: recibe un SparseArray y una posición y devuelve el elemento del SparseArray en dicha posición --
-get :: SparseArray a -> Int -> (Value a)
+get :: Eq a => SparseArray a -> Int -> (Value a)
 
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
 --                 También elimina todos los nodos vacíos que resulten de la eliminación                               --

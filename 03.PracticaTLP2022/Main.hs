@@ -15,7 +15,7 @@ loadFile f = do { putStr ("Loading test file " ++ f ++ "\n"); -- Muestra un mens
 exec :: String -> String
 exec file = iExec newSparseArray (lines file)
   where iExec :: (SparseArray String) -> [String] -> String
-        iExec _  []     = ""
+        iExec sa []     = "\n"++(show sa)++"\n\n"
         iExec sa (x:xs) = case i of
                             "SET"    -> "SET "++show(idx)++" "++elem++"\n"++(iExec (set sa idx elem) xs)    -- Instrucción SET
                             "GET"    -> "GET "++show(idx)++": "++valueShow(get sa idx)++"\n"++(iExec sa xs) -- Instrucción GET
