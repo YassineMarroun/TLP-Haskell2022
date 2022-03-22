@@ -15,19 +15,20 @@ num2bin n = num2binAux n
 
 -- Función newSparseArray: devuelve un SparseArray vacío --
 newSparseArray :: Eq a => SparseArray a
-newSparseArray sa = SparseArray
+newSparseArray = Vacio
 
 -- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
 set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
-set = a 
-
+set vector idx v =
+    Nodo v vector vector
 
 -- Función get: recibe un SparseArray y una posición y devuelve el elemento del SparseArray en dicha posición --
 get :: Eq a => SparseArray a -> Int -> (Value a)
-get = a 
+get a idx
+  = Null
 
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
 --                 También elimina todos los nodos vacíos que resulten de la eliminación                               --
 delete :: Eq a => SparseArray a -> Int -> SparseArray a
-delete = a 
-
+delete a idx
+  = Vacio
