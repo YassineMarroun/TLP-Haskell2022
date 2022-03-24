@@ -1,12 +1,12 @@
-module SparseArray where
+module SparseArray 
+where
 
 data Value a = Null | Value a 
   deriving (Eq,Read,Show)
--- data SparseArray a = Vacio | Nodo (Value a) (SparseArray a) (SparseArray a)
-data SparseArray a = Vacio | Nodo a (SparseArray a) (SparseArray a)
+data SparseArray a = Vacio | Nodo (Value a) (SparseArray a) (SparseArray a)
   deriving (Eq,Read,Show)
 
--- Función num2bin: recibe un Int y devuelve una lista con los dígitos de su representación en binario --
+-- Función num2bin: recibe un Int y devuelve una lista con los dí­gitos de su representación en binario --
 num2bin :: Int -> [Bool]
 num2bin 0 = [False]
 num2bin n = num2binAux n
@@ -18,26 +18,27 @@ num2bin n = num2binAux n
 newSparseArray :: Eq a => SparseArray a
 newSparseArray = Vacio
 
--- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
--- set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
 
-set :: (Ord a) => SparseArray a -> Int -> a -> SparseArray a
-set Vacio idx valor = Nodo valor Vacio Vacio
-set (Nodo a izq der) idx valor
-  | valor <= a = Nodo a (set izq idx valor) der
-  | valor > a = Nodo a izq (set der idx valor) 
+-- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
+set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
+set arbol = setAuxiliar arbol
+  where setAuxiliar :: Eq a => SparseArray a -> [Bool] -> a -> SparseArray a
+        setAuxiliar(Nodo a izq der) (x:xs) elemento
+          | x == false = (Nodo a (setAuxiliar izq xs elemento) der)
+          | x == true = (Nodo a izq (setAuxiliar der xs elemento))
 
 
 -- Función get: recibe un SparseArray y una posición y devuelve el elemento del SparseArray en dicha posición --
 get :: Eq a => SparseArray a -> Int -> (Value a)
-get Vacio idx  = Null
--- get sa idx 
---  | idx <= 10 = sa.Value B
---  | idx > 10 =  sa.Value D
-
+get Vacio idx = Null
+get (Nodo nsa sa1 sa2) idx 
+ | idx <= 10 = nsa 
+ | idx > 10 =  nsa
+ 
 
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
---                 También elimina todos los nodos vacíos que resulten de la eliminación                               --
+--                 También elimina todos los nodos vacÃís que resulten de la eliminacin                               --
 delete :: Eq a => SparseArray a -> Int -> SparseArray a
-delete a idx
-  = Vacio
+delete a idx 
+   = Vacio
+
