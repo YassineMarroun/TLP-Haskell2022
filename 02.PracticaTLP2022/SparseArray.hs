@@ -21,21 +21,15 @@ newSparseArray = Vacio
 
 -- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
 set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
-set sa idx elem = setAuxiliar(sa idx elem (num2bin(idx)))
+set sa idx elem = setAuxiliar sa idx elem (num2bin(idx))
+  where setAuxiliar :: Eq a => SparseArray a -> Int -> a -> [Bool] -> SparseArray a
+        setAuxiliar sa idx elem [listBooleanos] sa
+          | x == false = Nodo a (setAuxiliar izq xs elem) der
+          | x == true = Nodo a izq (setAuxiliar der xs elem)
 
-setAuxiliar :: Eq a => SparseArray a -> Int -> a -> [Bool] -> SparseArray a
-setAuxiliar sa idx elem [listBooleanos] = sa
---set (x:xs) e = setAuxiliar(sa idx elem (num2bin(idx))
-  --where setAuxiliar :: Eq a => SparseArray a -> Int -> a -> [Bool] -> SparseArray a
-    --    setAuxiliar sa idx elem num2bin(idx) = sa 
-
--- let listBool [] = num2bin(idx)
-
--- set arbol = setAuxiliar arbol
---  where setAuxiliar :: Eq a => SparseArray a -> [Bool] -> a -> SparseArray a
---        setAuxiliar(Nodo a izq der) (x:xs) elemento
---          | x == false = (Nodo a (setAuxiliar izq xs elemento) der)
---          | x == true = (Nodo a izq (setAuxiliar der xs elemento))
+-- funcion (nodo a izq der) (x:xs) elemento
+-- | x=false  = (Nodo a (funcion  izq xs elemento ) der)
+-- | x=true  = (Nodo a izq (funcion  der xs  elemento )
 
 
 -- Función get: recibe un SparseArray y una posición y devuelve el elemento del SparseArray en dicha posición --
@@ -47,7 +41,7 @@ get (Nodo nsa sa1 sa2) idx
  
 
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
---                 También elimina todos los nodos vacÃís que resulten de la eliminacin                               --
+--                 También elimina todos los nodos vacios que resulten de la eliminación                               --
 delete :: Eq a => SparseArray a -> Int -> SparseArray a
 delete a idx 
   = Vacio
