@@ -21,11 +21,11 @@ newSparseArray = Vacio
 
 -- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
 set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
-set sa idx elem = setAuxiliar sa idx elem (num2bin(idx))
+set sa idx elem = setAuxiliar idx elem (num2bin(idx))
   where setAuxiliar :: Eq a => SparseArray a -> Int -> a -> [Bool] -> SparseArray a
-        setAuxiliar sa idx elem [listBooleanos] sa
-          | x == false = Nodo a (setAuxiliar izq xs elem) der
-          | x == true = Nodo a izq (setAuxiliar der xs elem)
+        setAuxiliar sa idx elem (x:xs)
+          | x == False = Nodo elem Vacio sa
+          | x == True = Nodo elem sa Vacio
 
 -- funcion (nodo a izq der) (x:xs) elemento
 -- | x=false  = (Nodo a (funcion  izq xs elemento ) der)
