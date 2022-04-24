@@ -21,15 +21,19 @@ newSparseArray = Vacio
 
 -- Función set: recibe un SparseArray, una posición y un elemento y cambia el valor del SparseArray de dicha posición --
 set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
-set sa idx elem = setAuxiliar idx elem (num2bin(idx))
-  where setAuxiliar :: Eq a => SparseArray a -> Int -> a -> [Bool] -> SparseArray a
-        setAuxiliar sa idx elem (x:xs)
-          | x == False = Nodo elem Vacio sa
-          | x == True = Nodo elem sa Vacio
+set sa idx elem = setAuxiliar sa (num2bin(idx)) elem
 
--- funcion (nodo a izq der) (x:xs) elemento
--- | x=false  = (Nodo a (funcion  izq xs elemento ) der)
--- | x=true  = (Nodo a izq (funcion  der xs  elemento )
+setAuxiliar :: Eq a => SparseArray a -> [Bool] -> a -> SparseArray a
+-- Patrón para árbol vacío y lista vacía
+
+-- Patrón para árbol vacío y lista llena
+
+-- Patrón para árbol lleno y lista vacía
+
+-- Patrón para árbol lleno y lista llena
+setAuxiliar (Nodo i izq der) (x:xs) elem
+  | x == False = (Nodo i (setAuxiliar izq xs elem) der)
+  | x == True = (Nodo i izq (setAuxiliar der xs elem))
 
 
 -- Función get: recibe un SparseArray y una posición y devuelve el elemento del SparseArray en dicha posición --
@@ -45,4 +49,3 @@ get (Nodo nsa sa1 sa2) idx
 delete :: Eq a => SparseArray a -> Int -> SparseArray a
 delete a idx 
   = Vacio
-
