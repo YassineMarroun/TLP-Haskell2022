@@ -52,7 +52,7 @@ getAuxiliar Vacio _ = Null
 getAuxiliar (Nodo i izq der) [] = i
 
 --
-getAuxiliar (Nodo i der izq) (x:xs)
+getAuxiliar (Nodo i izq der) (x:xs)
   | x == False = getAuxiliar izq xs
   | x == True = getAuxiliar der xs
 
