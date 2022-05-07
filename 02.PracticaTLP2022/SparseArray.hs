@@ -23,18 +23,18 @@ set :: Eq a => SparseArray a -> Int -> a -> SparseArray a
 set sa idx elem = setAuxiliar sa (num2bin(idx)) elem
 
 setAuxiliar :: Eq a => SparseArray a -> [Bool] -> a -> SparseArray a
--- Patrón para árbol vacío y lista vacía
+-- Patrón para árbol vacío y lista de booleanos vacía
 setAuxiliar Vacio [] elem = Nodo (Value elem) Vacio Vacio
 
---Patrón arbol lleno y lista vacía
+--Patrón para árbol lleno y lista de booleanos vacía
 setAuxiliar (Nodo i izq der) [] elem = Nodo (Value elem) izq der
 
--- Patrón para arbol vacio y lista llena
+-- Patrón para árbol vacío y lista de booleanos llena
 setAuxiliar Vacio (x:xs) elem
   | x == False = Nodo Null (setAuxiliar Vacio xs elem) Vacio
   | x == True = Nodo Null Vacio (setAuxiliar Vacio xs elem)
 
--- Patrón para árbol lleno y lista llena
+-- Patrón para árbol lleno y lista de booleanos llena
 setAuxiliar (Nodo i izq der) (x:xs) elem
   | x == False = Nodo i (setAuxiliar izq xs elem) der
   | x == True = Nodo i izq (setAuxiliar der xs elem)
@@ -45,13 +45,13 @@ get :: Eq a => SparseArray a -> Int -> (Value a)
 get sa idx = getAuxiliar sa (num2bin(idx))
 
 getAuxiliar :: Eq a => SparseArray a -> [Bool] -> (Value a)
---
+-- Patrón para árbol vacío e indifirente si la lista de booleanos tiene elementos o está vacía
 getAuxiliar Vacio _ = Null
 
---
+-- Patrón para árbol lleno y lista de booleanos vacía
 getAuxiliar (Nodo i izq der) [] = i
 
---
+-- Patrón para árbol lleno y lista de booleanos llena
 getAuxiliar (Nodo i izq der) (x:xs)
   | x == False = getAuxiliar izq xs
   | x == True = getAuxiliar der xs
@@ -59,6 +59,11 @@ getAuxiliar (Nodo i izq der) (x:xs)
 
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
 --                 También elimina todos los nodos vacios que resulten de la eliminación                               --
---delete :: Eq a => SparseArray a -> Int -> SparseArray a
---delete a idx 
---   = Vacio
+delete :: Eq a => SparseArray a -> Int -> SparseArray a
+delete sa idx = deleteAuxiliar sa (num2bin(idx)) idx
+
+deleteAuxiliar :: Eq a => SparseArray a -> [Bool] -> Int -> SparseArray a
+-- Patrón para árbol vacío e indifirente si la lista de booleanos tiene elementos o está vacía 
+deleteAuxiliar Vacio _ idx = Vacio
+
+--
