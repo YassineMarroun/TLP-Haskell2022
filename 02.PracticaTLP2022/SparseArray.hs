@@ -60,10 +60,23 @@ getAuxiliar (Nodo i izq der) (x:xs)
 -- Función delete: recibe un SparseArray y una posición y devuelve el SparseArray resultado de eliminar dicha posición --
 --                 También elimina todos los nodos vacios que resulten de la eliminación                               --
 delete :: Eq a => SparseArray a -> Int -> SparseArray a
-delete sa idx = deleteAuxiliar sa (num2bin(idx)) idx
+delete sa idx = deleteAuxiliar sa (num2bin(idx))
 
-deleteAuxiliar :: Eq a => SparseArray a -> [Bool] -> Int -> SparseArray a
+deleteAuxiliar :: Eq a => SparseArray a -> [Bool] -> SparseArray a
 -- Patrón para árbol vacío e indifirente si la lista de booleanos tiene elementos o está vacía 
-deleteAuxiliar Vacio _ idx = Vacio
+deleteAuxiliar Vacio _ = Vacio
 
 --
+deleteAuxiliar (Nodo _ Vacio Vacio) [] = Vacio
+
+--Patrón para árbol lleno y lista de booleanos vacía
+deleteAuxiliar (Nodo i izq der) [] = Nodo Null izq der
+
+-- Patrón para árbol lleno y lista de booleanos llena
+deleteAuxiliar (Nodo i izq der) (x:xs)
+  | x == False = comprobarPadre(Nodo i (deleteAuxiliar izq xs) der)
+  | x == True = comprobarPadre(Nodo i izq (deleteAuxiliar der xs))
+
+comprobarPadre :: Eq a  => SparseArray a -> SparseArray a
+comprobarPadre (Nodo Null Vacio Vacio) = Vacio
+comprobarPadre (Nodo i izq der) = Nodo i izq der
