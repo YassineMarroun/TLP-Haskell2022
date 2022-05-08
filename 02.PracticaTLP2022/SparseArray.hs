@@ -66,7 +66,7 @@ deleteAuxiliar :: Eq a => SparseArray a -> [Bool] -> SparseArray a
 -- Patrón para árbol vacío e indifirente si la lista de booleanos tiene elementos o está vacía 
 deleteAuxiliar Vacio _ = Vacio
 
---
+-- Patrón para cuando un nodo tiene dos hijos Vacio y la lista de booleanos está vacía
 deleteAuxiliar (Nodo _ Vacio Vacio) [] = Vacio
 
 --Patrón para árbol lleno y lista de booleanos vacía
@@ -77,6 +77,7 @@ deleteAuxiliar (Nodo i izq der) (x:xs)
   | x == False = comprobarPadre(Nodo i (deleteAuxiliar izq xs) der)
   | x == True = comprobarPadre(Nodo i izq (deleteAuxiliar der xs))
 
+-- Función auxiliar para poder eliminar nodos
 comprobarPadre :: Eq a  => SparseArray a -> SparseArray a
 comprobarPadre (Nodo Null Vacio Vacio) = Vacio
 comprobarPadre (Nodo i izq der) = Nodo i izq der
